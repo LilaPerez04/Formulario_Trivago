@@ -27,19 +27,21 @@ time.sleep(3)
 # Establecer la fecha que se desea seleccionar
 dia = '10'
 mes = 'Junio'
+mes_numero = '06'
 anio = '2024'
+mes_anio = mes + ' ' + anio
 
 # Navegar al mes y año correctos
 while True:
-    displayed_month_year = driver.find_element(By.CLASS_NAME, 'calendario-mes-anio').text
-    if mes in displayed_month_year and anio in displayed_month_year:
+    displayed_month_year = driver.find_element(By.XPATH, '//div[@data-testid="calendar-popover"]//*[contains(@class, "text-center")]//h3[contains(@class, "Heading_heading__xct3h")][1]').text
+    if mes_anio in displayed_month_year:
         break
     else:
-        next_button = driver.find_element(By.CLASS_NAME, 'calendario-siguiente')
+        next_button = driver.find_element(By.XPATH, '//button[@data-testid="calendar-button-next"]')
         next_button.click()
 
 # Seleccionar el día correcto
-driver.find_element(By.XPATH, f"//td[text()='{dia}']").click()
+driver.find_element(By.XPATH, f'//button[@data-testid="valid-calendar-day-{anio}-{mes_numero}-{dia}"]').click()
 time.sleep(3)
 
 # calendar_right_button = (By.CLASS_NAME, 'absolute right-0')
