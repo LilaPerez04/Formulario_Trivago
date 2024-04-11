@@ -24,25 +24,46 @@ arrival_departure_calendar = WebDriverWait(driver, 10).until(ec.element_to_be_cl
 arrival_departure_calendar.click()
 time.sleep(3)
 
-# Establecer la fecha que se desea seleccionar
-dia = '10'
-mes = 'Junio'
-mes_numero = '06'
-anio = '2024'
-mes_anio = mes + ' ' + anio
+# Establecer la fecha de check in
+check_in = {
+    "day_ci": '10',
+    "month_ci": 'Junio',
+    "month_number_ci": '06',
+    "year_ci": '2024',
+}
+# Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
+check_in["month_year_ci"] = check_in["month_ci"] + " " + check_in["year_ci"]
 
-# Navegar al mes y año correctos
-while True:
-    displayed_month_year = driver.find_element(By.XPATH, '//div[@data-testid="calendar-popover"]//*[contains(@class, "text-center")]//h3[contains(@class, "Heading_heading__xct3h")][1]').text
-    if mes_anio in displayed_month_year:
-        break
-    else:
-        next_button = driver.find_element(By.XPATH, '//button[@data-testid="calendar-button-next"]')
-        next_button.click()
+# Establecer la fecha de check out
+check_out = {
+    "day_co": '10',
+    "month_co": 'Julio',
+    "month_number_co": '07',
+    "year_co": '2024',
+}
+# Agregando un nuevo elemento al diccionario check_out (concatenando mes y año)
+check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
 
-# Seleccionar el día correcto
-driver.find_element(By.XPATH, f'//button[@data-testid="valid-calendar-day-{anio}-{mes_numero}-{dia}"]').click()
+
+# Navegar al mes y año correctos y configurar fecha de check in y check out
+def set_calendar(month_year, year, month_number, day):
+    while True:
+        displayed_month_year = driver.find_element(By.XPATH, '//div[@data-testid="calendar-popover"]//*[contains(@class, "text-center")]//h3[contains(@class, "Heading_heading__xct3h")][1]').text
+        if month_year in displayed_month_year:
+            break
+        else:
+            next_button = WebDriverWait(driver, 10).until(
+                ec.element_to_be_clickable((By.XPATH, '//button[@data-testid="calendar-button-next"]')))
+            next_button.click()
+
+# Seleccionar el día correcto de check in y check out
+    driver.find_element(By.XPATH, f'//button[@data-testid="valid-calendar-day-{year}-{month_number}-{day}"]').click()
+    time.sleep(3)
+
+
+# Llamar a mis parámetros
+set_calendar(check_in["month_year_ci"], check_in["year_ci"], check_in["month_number_ci"], check_in["day_ci"])
+set_calendar(check_out["month_year_co"], check_out["year_co"], check_out["month_number_co"], check_out["day_co"])
 time.sleep(3)
 
-# calendar_right_button = (By.CLASS_NAME, 'absolute right-0')
 driver.quit()
