@@ -96,6 +96,3 @@ time.sleep(2)
 
 
 driver.quit()
-
-# Sólo estoy probando el versionamiento
-# 2
