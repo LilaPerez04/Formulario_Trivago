@@ -23,7 +23,7 @@ destiny_city_searcher.send_keys("Valentin Imperial Riviera Maya")
 time.sleep(3)
 
 
-def pick_a_arrival_date(self):
+def pick_checkin_and_checkout_dates_on_calendar(self):
 
     checkin_date = "2024-05-10"
     checkout_date = "2024-06-12"
@@ -53,6 +53,7 @@ def pick_a_arrival_date(self):
         next_button = self.driver.find_element(By.XPATH, "//button[@data-testid='calendar-button-next']")
         next_button.click()
         time.sleep(2)  # Esperar brevemente después de hacer clic en el botón siguiente
+
 
         ######### Fecha de regreso ###################
         try:
