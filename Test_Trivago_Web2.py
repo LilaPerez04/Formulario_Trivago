@@ -68,129 +68,32 @@ time.sleep(3)
 
 
 # Seleccionar huespedes
-
-def select_guests_and_rooms():
-    #Click sobre el boton de habitaciones y huespedes
-    driver.find_element(By.XPATH, "//span[@data-testid='search-form-guest-selector-value']").click()
-
-
-def add_adults(adults_to_add):
-    adults_plus_counter = (By.XPATH, "//button[@data-testid='adults-amount-plus-button']//span[1]")
-    WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(adults_plus_counter))
-    for i in range(adults_to_add):
-        driver.find_element(*adults_plus_counter).click()
-        time.sleep(1)
+guest_counter_plus = WebDriverWait(driver, 5).until(ec.element_to_be_clickable(
+    (By.XPATH, "//button[contains(@data-testid,'guest-selector-apply')]")))
+guest_counter_plus.click()
+time.sleep(2)
 
 
-def remove_adults(adults_to_remove):
-    adults_minus_counter = (By.XPATH, "//button[@data-testid='adults-amount-minus-button']//span[1]")
-    WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(adults_minus_counter))
-    for u in range(adults_to_remove):
-        driver.find_element(*adults_minus_counter).click()
-        time.sleep(1)
+def guest_counter_plus():
+    for _ in range(2):
+        driver.find_element(guest_counter_plus)
+        time.sleep(3)
 
 
-def add_kids(kids_to_add):
-    adults_plus_counter = (By.XPATH, "//button[@data-testid='children-amount-plus-button']//span[1]")
-    WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(adults_plus_counter))
-    for i in range(kids_to_add):
-        driver.find_element(*adults_plus_counter).click()
-        time.sleep(1)
+guest_counter_less = By.XPATH, "//span[contains(@class,'Icon_wrapper__B6IoS Icon_centered__WVTjD Icon_full__sdZ0N')])[2]"
 
 
-def remove_kids(kids_to_remove):
-    kids_minus_counter = (By.XPATH, "//button[@data-testid='children-amount-minus-button']//span[1]")
-    WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(kids_minus_counter))
-    for u in range(kids_to_remove):
-        driver.find_element(*kids_minus_counter).click()
-        time.sleep(1)
-
-def add_rooms(rooms_to_add):
-    rooms_plus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-plus-button']//span[1]")
-    WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(rooms_plus_counter))
-    for i in range(rooms_to_add):
-        driver.find_element(*rooms_plus_counter).click()
-        time.sleep(1)
+def guest_counter():
+    for _ in range(3):
+        driver.find_element(guest_counter_less)
+        time.sleep(3)
 
 
-def remove_rooms(rooms_to_remove):
-
-    rooms_minus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-minus-button']//span[1]")
-    WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(rooms_minus_counter))
-    for u in range(rooms_to_remove):
-        driver.find_element(*rooms_minus_counter).click()
-        time.sleep(1)
-
-
-from selenium.webdriver.support.ui import Select
-
-
-def select_kid1_age(age_by_index):
-
-    kid1_age_dropdown = driver.find_element(By.XPATH, "//select[contains(@class,'appearance-none h-10')]")
-    #Crea un objetos Select
-    kid1_age = Select(kid1_age_dropdown)
-    kid1_age.select_by_index(age_by_index) #Selecciona la primera opcion
-    time.sleep(2)
-
-
-def select_kid2_age(age):
-    kid2_age_dropdown = driver.find_element(By.XPATH, "(//select[contains(@class, 'appearance-none h-10')])[2]")
-    kid2_age = Select(kid2_age_dropdown)
-    kid2_age.select_by_visible_text(age)  # Selecciona la opcion que contenga el texto 5
-
-
-def pets_allowed_checkbox():
-    driver.find_element(By.XPATH, "//input[@data-testid='pet-friendly-filter']").click()
-    time.sleep(2)
-
-
-def restart_guests_view():
-    driver.find_element(By.CLASS_NAME, 'FlyoutGuestsRooms_resetBtn__1oUka').click()
-
-
-def accept_guests_and_rooms_button():
-    driver.find_element(By.XPATH, "//button[text()='Aceptar']").click()
-
-
-def click_on_search_button():
-    driver.find_element(By.XPATH, "//span[text()='Buscar']").click()
-
-
-def scroll_to_find_hostel_card():
-    try:
-        hostel_card = driver.find_element(By.XPATH,
-                                          "//div[@id='__next']/div[1]/main[1]/div[3]/section[1]"
-                                          "/div[1]/div[1]/ol[1]/li[6]/div[1]/article[1]/div[2]/div[1]")
-
-        # Hacer scroll hasta que el elemento sea visible
-        driver.execute_script("arguments[0].scrollIntoView(true);", hostel_card)
-
-        # Esperar 2 segundos (puedes ajustar el valor según sea necesario)
-        driver.implicitly_wait(2)
-
-    finally:
-
-        driver.quit()
-
-
-add_adults(4)
-remove_adults(2)
-add_kids(3)
-add_rooms(2)
-remove_kids(1)
-remove_rooms(1)
-select_kid1_age(0)
-select_kid2_age("5")
-pets_allowed_checkbox()
-accept_guests_and_rooms_button()
+guest_counter_confirm = WebDriverWait(driver, 5).until(ec.element_to_be_clickable(
+    (By.XPATH, "//button[@data-testid='guest-selector-apply']")))
+guest_counter_confirm.click()
+time.sleep(2)
 
 
 driver.quit()
-# 55
+# 44
