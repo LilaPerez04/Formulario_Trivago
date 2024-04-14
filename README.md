@@ -2,7 +2,7 @@
 ## Formulario_Trivago
 - Autores: Javier Meza, Liliana Pérez, Damelis Querales
 
-**Descripción del Proyecto:** Pruebas automáticas para comprobar la funcionalidad del formulario de inicio de Trivago.
+### **Descripción del Proyecto:** Pruebas automáticas para comprobar la funcionalidad del formulario de inicio de Trivago.
 
 Este proyecto describe pruebas automatizadas que cubren el proceso completo del formulario de inicio para hacer una reservación de un hotel en Trivago. Las pruebas deben cubrir estas acciones:
 
@@ -19,13 +19,13 @@ Este proyecto describe pruebas automatizadas que cubren el proceso completo del 
     - Seleccionar número de habitaciones
     - Marcar la opción de hoteles que permitan mascotas
 
-**Servidor utilizado:** https://www.trivago.com.mx/es-MX
+### **Servidor utilizado:** https://www.trivago.com.mx/es-MX
 
-**Configuración del proyecto y ejecución de las pruebas:** 
+### **Configuración del proyecto y ejecución de las pruebas:** 
 
 Para ejecutar las pruebas clone este proyecto en su repositorio local
 
-**Técnicas y tecnologías utilizadas**
+### **Técnicas y tecnologías utilizadas**
 En el proyecto se utilizan diversas tecnologías y técnicas, incluyendo PyCharm, Pytest, Pytest en la terminal para ejecutar las pruebas, Github, Github Desktop, funciones en Python y Selenium. Aquí hay una breve descripción de cada una:
 
 **PyCharm:*
