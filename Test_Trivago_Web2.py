@@ -1,17 +1,17 @@
-# Configuración de Librerías:
+# Configuración de Librerías
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 import time
 
-# Configuración de los Drivers y URL de Trivago:
+# Configuración de los Drivers y URL de Trivago
 driver = webdriver.Chrome()
 url = "https://www.trivago.com.mx/es-MX"
 driver.get(url)
 driver.maximize_window()
 
-# Interacción con Elementos de la Página:
+# Interacción con Elementos de la Página
 
 # Seleccionar destino
 destiny_city_searcher = WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.ID, 'input-auto-complete')))
