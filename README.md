@@ -3,7 +3,7 @@
 
 **Descripción del Proyecto:** Pruebas automáticas para comprobar la funcionalidad del formulario de inicio de Trivago.
 
-    Este proyecto describe pruebas automatizadas que cubren el proceso completo del formulario de inicio para hacer una reservación de un hotel en Trivago. Las pruebas deben cubrir estas acciones:
+Este proyecto describe pruebas automatizadas que cubren el proceso completo del formulario de inicio para hacer una reservación de un hotel en Trivago. Las pruebas deben cubrir estas acciones:
 
 - Configuración de Librerías
 - Configuración de los Drivers y URL de Trivago
@@ -22,10 +22,10 @@
 
 **Configuración del proyecto y ejecución de las pruebas:** 
 
-    Para ejecutar las pruebas clone este proyecto en su repositorio local
+Para ejecutar las pruebas clone este proyecto en su repositorio local
 
 **Técnicas y tecnologías utilizadas**
-    En el proyecto se utilizan diversas tecnologías y técnicas, incluyendo PyCharm, Pytest, Pytest en la terminal para ejecutar las pruebas, Github, Github Desktop, funciones en Python y Selenium. Aquí hay una breve descripción de cada una:
+En el proyecto se utilizan diversas tecnologías y técnicas, incluyendo PyCharm, Pytest, Pytest en la terminal para ejecutar las pruebas, Github, Github Desktop, funciones en Python y Selenium. Aquí hay una breve descripción de cada una:
 
 **PyCharm:*
 - PyCharm es un entorno de desarrollo integrado (IDE) para Python que proporciona herramientas para escribir, editar, depurar y ejecutar código Python. Se puede configurar para ejecutar pruebas de Pytest.
