@@ -28,7 +28,7 @@ Para ejecutar las pruebas clone este proyecto en su repositorio local
 ### **Técnicas y tecnologías utilizadas**
 En el proyecto se utilizan diversas tecnologías y técnicas, incluyendo PyCharm, Pytest, Pytest en la terminal para ejecutar las pruebas, Github, Github Desktop, funciones en Python y Selenium. Aquí hay una breve descripción de cada una:
 
-**PyCharm:*
+*PyCharm:*
 - PyCharm es un entorno de desarrollo integrado (IDE) para Python que proporciona herramientas para escribir, editar, depurar y ejecutar código Python. Se puede configurar para ejecutar pruebas de Pytest.
 
 *Pytest:*
