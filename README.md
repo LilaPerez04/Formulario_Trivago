@@ -41,7 +41,7 @@ En el proyecto se utilizan diversas tecnologías y técnicas, incluyendo PyCharm
 - Github es una plataforma de desarrollo colaborativo que permite alojar proyectos utilizando el sistema de control de versiones Git. Github Desktop es una aplicación que facilita la interacción con repositorios Github a través de una interfaz gráfica.
 
 *Funciones en Python:*
--El proyecto hace uso de funciones en Python para modularizar y organizar el código, lo que permite reutilizar y mantener el código de manera eficiente.
+- El proyecto hace uso de funciones en Python para modularizar y organizar el código, lo que permite reutilizar y mantener el código de manera eficiente.
 
 *Selenium:*
 - Suite de herramientas de automatización de pruebas. Proporciona un conjunto de bibliotecas y APIs que permiten interactuar con los elementos de una página web y realizar acciones como hacer clic en botones, ingresar texto, obtener datos, etc.
