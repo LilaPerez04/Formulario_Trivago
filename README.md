@@ -1,33 +1,28 @@
+## 🚀 About this project
 # Formulario_Trivago
-Proyecto 7: Liliana Pérez
-Descripción del Proyecto: Pruebas para comprobar la funcionalidad de Urban Routes.
-Escribe pruebas automatizadas que cubran el proceso completo de pedir un taxi. A través de definir los localizadores y métodos necesarios en la clase UrbanRoutesPage y las pruebas en la clase TestUrbanRoutes. Las pruebas deben cubrir estas acciones:
 
-Configurar la dirección
+Descripción del Proyecto: Pruebas automáticas para comprobar la funcionalidad del formulario de inicio de Trivago.
 
-Seleccionar la tarifa Comfort
+Este proyecto describe pruebas automatizadas que cubren el proceso completo del formulario de inicio para hacer una reservación de un hotel en Trivago. Las pruebas deben cubrir estas acciones:
 
-Rellenar el número de teléfono
+Configuración de Librerías
+Configuración de los Drivers y URL de Trivago
+Interacción con Elementos de la Página
+    Seleccionar destino
+    Seleccionar calendario
+        Establecer la fecha de check in
+        Establecer la fecha de check out
+    Seleccionar número de huéspedes adultos
+    Seleccionar número de huéspedes niños
+        Establecer edades de los niños
+    Seleccionar número de habitaciones
+    Marcar la opción de hoteles que permitan mascotas
 
-Agregar una tarjeta de crédito. (Consejo: el botón 'link' (enlace) no se activa hasta que el campo CVV de la tarjeta en el modal 'Agregar una tarjeta', id="code" class="card-input", pierde el enfoque. Para cambiar el enfoque, puedes simular que el usuario o usuaria presiona TAB o hace clic en otro lugar de la pantalla). El repositorio tiene preparada la función retrieve_phone_code() que intercepta el código de confirmación requerido para agregar una tarjeta
-
-Escribir un mensaje para el controlador
-
-Pedir una manta y pañuelos
-
-Pedir 2 helados
-
-Aparece el modal para buscar un taxi
-
-Esperar a que aparezca la información del conductor en el modal (opcional). Además de los pasos anteriores, hay un paso opcional que puedes comprobar; este es un poco más complicado que los demás, pero es una buena práctica, ya que es probable que en tu trayectoria profesional encuentres tareas más difíciles
-
-Servidor utilizado:
-servidor utilizado
+Servidor utilizado: https://www.trivago.com.mx/es-MX
 
 Configuración del proyecto y ejecución de las pruebas:
-Inicie un nuevo servidor para la aplicación Urban.Routes iniciar servidor
-Escriba la URL del nuevo servidor en el archivo data.py, asignándola en la variable urban_routes_url
-Para ejecutar las pruebas escriba el código: pytest main.py, en la terminal de Pycharm
+Para ejecutar las pruebas clone este proyecto en su repositorio local
+
 Técnicas y tecnologías utilizadas
 En el proyecto se utilizan diversas tecnologías y técnicas, incluyendo PyCharm, Pytest, Pytest en la terminal para ejecutar las pruebas, Github, Github Desktop, funciones en Python y Selenium. Aquí hay una breve descripción de cada una:
 
