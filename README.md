@@ -1,5 +1,6 @@
 # 🚀 About this project
 ## Formulario_Trivago
+- Autores: Javier Meza, Liliana Pérez, Damelis 
 
 **Descripción del Proyecto:** Pruebas automáticas para comprobar la funcionalidad del formulario de inicio de Trivago.
 
