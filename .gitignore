@@ -1,7 +1,7 @@
 # Archivos del .gitignore
 .pytest/
 venv/
-.idea/
+.idea
 .pytest_cache/
 __pycache__/
 Test_Trivago_Web.py
