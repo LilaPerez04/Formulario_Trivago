@@ -70,7 +70,7 @@ time.sleep(3)
 # Seleccionar huespedes
 
 def select_guests_and_rooms():
-    #Click sobre el boton de habitaciones y huespedes
+    # Click sobre el boton de habitaciones y huespedes
     driver.find_element(By.XPATH, "//span[@data-testid='search-form-guest-selector-value']").click()
 
 
@@ -109,6 +109,7 @@ def remove_kids(kids_to_remove):
         driver.find_element(*kids_minus_counter).click()
         time.sleep(1)
 
+
 def add_rooms(rooms_to_add):
     rooms_plus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-plus-button']//span[1]")
     WebDriverWait(driver, 10).until(
@@ -134,9 +135,9 @@ from selenium.webdriver.support.ui import Select
 def select_kid1_age(age_by_index):
 
     kid1_age_dropdown = driver.find_element(By.XPATH, "//select[contains(@class,'appearance-none h-10')]")
-    #Crea un objetos Select
+    # Crea un objetos Select
     kid1_age = Select(kid1_age_dropdown)
-    kid1_age.select_by_index(age_by_index) #Selecciona la primera opcion
+    kid1_age.select_by_index(age_by_index)  # Selecciona la primera opcion
     time.sleep(2)
 
 
@@ -193,4 +194,3 @@ accept_guests_and_rooms_button()
 
 
 driver.quit()
-# 44
