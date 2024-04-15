@@ -4,7 +4,7 @@
 
 ### **Descripción del Proyecto:** Pruebas automáticas para comprobar la funcionalidad del formulario de inicio de Trivago.
 
-Este proyecto describe pruebas automatizadas que cubren el proceso completo de hacer una reservación de hotel en Trivago, a través del formulario de inicio. Las pruebas deben cubrir estas acciones:
+Este proyecto describe pruebas automatizadas que cubren el proceso completo de hacer una búsqueda para la disponibilidad de un hotel en Trivago, a través del formulario de inicio. Las pruebas deben cubrir estas acciones:
 
 - Configuración de Librerías
 - Configuración de los Drivers y URL de Trivago
