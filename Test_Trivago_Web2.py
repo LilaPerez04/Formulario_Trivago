@@ -93,11 +93,11 @@ def remove_adults(adults_to_remove):
 
 
 def add_kids(kids_to_add):
-    adults_plus_counter = (By.XPATH, "//button[@data-testid='children-amount-plus-button']//span[1]")
+    kids_plus_counter = (By.XPATH, "//button[@data-testid='children-amount-plus-button']//span[1]")
     WebDriverWait(driver, 10).until(
-        ec.element_to_be_clickable(adults_plus_counter))
+        ec.element_to_be_clickable(kids_plus_counter))
     for i in range(kids_to_add):
-        driver.find_element(*adults_plus_counter).click()
+        driver.find_element(*kids_plus_counter).click()
         time.sleep(1)
 
 
@@ -120,7 +120,6 @@ def add_rooms(rooms_to_add):
 
 
 def remove_rooms(rooms_to_remove):
-
     rooms_minus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-minus-button']//span[1]")
     WebDriverWait(driver, 10).until(
         ec.element_to_be_clickable(rooms_minus_counter))
