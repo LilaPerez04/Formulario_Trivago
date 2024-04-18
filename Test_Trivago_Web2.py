@@ -20,7 +20,7 @@ destiny_city_searcher.send_keys("Valentin Imperial Riviera Maya")
 time.sleep(3)
 
 # Seleccionar calendario
-arrival_departure_calendar = WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, '(//*[@id="__next"]/div[1]/div[2]/section[1]/div[2]/div[4]/div/div[1]/fieldset/button[1])[1]')))
+arrival_departure_calendar = WebDriverWait(driver, set_calendar10).until(ec.element_to_be_clickable((By.XPATH, '(//*[@id="__next"]/div[1]/div[2]/section[1]/div[2]/div[4]/div/div[1]/fieldset/button[1])[1]')))
 arrival_departure_calendar.click()
 time.sleep(3)
 
@@ -55,6 +55,8 @@ def set_calendar(month_year, year, month_number, day):
             next_button = WebDriverWait(driver, 10).until(
                 ec.element_to_be_clickable((By.XPATH, '//button[@data-testid="calendar-button-next"]')))
             next_button.click()
+
+
 
 # Seleccionar el día correcto de check in y check out
     driver.find_element(By.XPATH, f'//button[@data-testid="valid-calendar-day-{year}-{month_number}-{day}"]').click()
