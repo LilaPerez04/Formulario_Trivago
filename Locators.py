@@ -15,7 +15,8 @@ displayed_month_year = (By.XPATH,
                         '//h3[contains(@class, "Heading_heading__xct3h")][1]')
 next_button = (By.XPATH,
                '//button[@data-testid="calendar-button-next"]')
-correct_day = (By.XPATH, '//button[@data-testid="valid-calendar-day-{year}-{month_number}-{day}"]')
+checkin_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_in["year_ci"]}-{data.check_in["month_number_ci"]}-{data.check_in["day_ci"]}"]')
+checkout_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_out["year_co"]}-{data.check_out["month_number_co"]}-{data.check_out["day_co"]}"]')
 
 # Menú habitaciones y huéspedes
 guests_and_rooms_button = (By.XPATH, "//span[@data-testid='search-form-guest-selector-value']")
