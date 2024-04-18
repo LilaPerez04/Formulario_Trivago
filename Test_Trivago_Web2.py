@@ -20,7 +20,7 @@ destiny_city_searcher.send_keys("Valentin Imperial Riviera Maya")
 time.sleep(3)
 
 # Seleccionar calendario
-arrival_departure_calendar = WebDriverWait(driver, set_calendar10).until(ec.element_to_be_clickable((By.XPATH, '(//*[@id="__next"]/div[1]/div[2]/section[1]/div[2]/div[4]/div/div[1]/fieldset/button[1])[1]')))
+arrival_departure_calendar = WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, '(//*[@id="__next"]/div[1]/div[2]/section[1]/div[2]/div[4]/div/div[1]/fieldset/button[1])[1]')))
 arrival_departure_calendar.click()
 time.sleep(3)
 
