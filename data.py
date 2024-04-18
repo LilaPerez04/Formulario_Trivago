@@ -1,9 +1,10 @@
 # Configuración de los Drivers y URL de Trivago
 
-#Valores
+# Página Trivago
 url = "https://www.trivago.com.mx/es-MX"
 
-destiny = "Ocean Coral & Turquesa"
+# Seleccionar destino
+hotel = "Ocean Coral & Turquesa"
 
 # Establecer la fecha de check in
 check_in = {
