@@ -25,33 +25,27 @@ class Request:
         time.sleep(3)
 
     # Navegar al mes y año correctos y configurar fecha de check in y check out
-    def set_calendar(self, locator, month_year, locator_2, locator_3, year, month_number, day):
-        print("Set Calendar")
-        print(month_year)
-        print(year)
-        print(month_number)
-        print(day)
+
+    def set_calendar(self, locator, month_year, locator_next_month, day_button_locator):
         try:
             while True:
-                displayed = WebDriverWait(self.driver, 10).until(
-                        ec.presence_of_element_located(locator)).text
-                print(displayed)
-                if month_year in displayed:
-                    break
+                # Esperar a que se muestre el mes y año correctos en el calendario
+                displayed_month_year = WebDriverWait(self.driver, 10).until(
+                    ec.presence_of_element_located(locator)).text
+
+                if month_year in displayed_month_year:
+                    break  # Salir del bucle si se muestra el mes y año correctos
                 else:
+                    # Si el mes y año esperados no están visibles, hacer clic en el botón siguiente
                     button_next = WebDriverWait(self.driver, 10).until(
-                        ec.element_to_be_clickable(locator_2))
+                        ec.element_to_be_clickable(locator_next_month))
                     button_next.click()
-        except NoSuchElementException:
-            print(f"Error: No se encontró el botón para el día {year}/{month_number}/{day}.")
-        except TimeoutException:
-            print("Error: Tiempo de espera agotado al esperar que el botón del día sea clickable.")
 
-        # Seleccionar el día correcto de check in y check out
-        select_day_button = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(self.get_correct_day(locator_3, year, month_number, day)))
-        select_day_button.click()
-        time.sleep(3)
+            # Una vez que se muestra el mes y año correctos, seleccionar el día específico
+            select_day_button = WebDriverWait(self.driver, 10).until(
+                ec.element_to_be_clickable(day_button_locator))
+            select_day_button.click()
+            print("Día seleccionado correctamente.")
+        except Exception as e:
+            print(f"Error en la función set_calendar: {e}")
 
-    def get_correct_day(self, locator, year, month_number, day):
-        value = locator[1].format(year=year, month_number=month_number, day=day)
-        return (locator[0], value)
