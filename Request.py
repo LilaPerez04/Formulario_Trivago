@@ -1,24 +1,57 @@
+import time
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium import webdriver
 import data
-import Locators
-from Request import Request
+from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException, NoSuchElementException
 
-class TestTrivagoWeb:
-    request = None
+class Request:
+    driver = None
 
-    def setup_class(self):
-        self.request = Request()  # Inicializa la clase Request del archivo Request
+    def __init__(self):
+        self.driver = webdriver.Chrome()
+        self.driver.get(data.url)
+        self.driver.maximize_window()
 
-    def test_search(self):
-        self.request.find_hotel(Locators.destiny_city_searcher, data.hotel)
+    def find_hotel(self, locator, value):
+        destiny_search = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
+        destiny_search.click()
+        destiny_search.send_keys(value)
+        time.sleep(3)
 
-    def test_calendar(self):
-        self.request.calendar_select(Locators.arrival_departure_calendar)
+    def calendar_select(self, locator):
+        calendar_el = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
+        calendar_el.click()
+        time.sleep(3)
 
-    def test_calendar_setup(self):
-        self.request.set_calendar(Locators.displayed_month_year, data.check_in["month_year_ci"], Locators.next_button, Locators.correct_day,
-                                  data.check_in["year_ci"], data.check_in["month_number_ci"], data.check_in["day_ci"])
-        self.request.set_calendar(Locators.displayed_month_year, data.check_out["month_year_co"], Locators.next_button, Locators.correct_day,
-                                  data.check_out["year_co"], data.check_out["month_number_co"], data.check_out["day_co"])
+    # Navegar al mes y año correctos y configurar fecha de check in y check out
+    def set_calendar(self, locator, month_year, locator_2, locator_3, year, month_number, day):
+        print("Set Calendar")
+        print(month_year)
+        print(year)
+        print(month_number)
+        print(day)
+        try:
+            while True:
+                displayed = WebDriverWait(self.driver, 10).until(
+                        ec.presence_of_element_located(locator)).text
+                print(displayed)
+                if month_year in displayed:
+                    break
+                else:
+                    button_next = WebDriverWait(self.driver, 10).until(
+                        ec.element_to_be_clickable(locator_2))
+                    button_next.click()
+        except NoSuchElementException:
+            print(f"Error: No se encontró el botón para el día {year}/{month_number}/{day}.")
+        except TimeoutException:
+            print("Error: Tiempo de espera agotado al esperar que el botón del día sea clickable.")
 
-    def teardown_class(self):
-        self.request.driver.quit()
+        # Seleccionar el día correcto de check in y check out
+        select_day_button = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(self.get_correct_day(locator_3, year, month_number, day)))
+        select_day_button.click()
+        time.sleep(3)
+
+    def get_correct_day(self, locator, year, month_number, day):
+        value = locator[1].format(year=year, month_number=month_number, day=day)
+        return (locator[0], value)
