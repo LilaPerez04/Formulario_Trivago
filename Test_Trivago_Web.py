@@ -1,6 +1,8 @@
 import data
 import Locators
 from Request import Request
+import time
+
 
 class TestTrivagoWeb:
     request = None
@@ -15,10 +17,12 @@ class TestTrivagoWeb:
         self.request.calendar_select(Locators.arrival_departure_calendar)
 
     def test_calendar_setup(self):
-        self.request.set_calendar(Locators.displayed_month_year, data.check_in["month_year_ci"], Locators.next_button, Locators.correct_day,
-                                  data.check_in["year_ci"], data.check_in["month_number_ci"], data.check_in["day_ci"])
-        self.request.set_calendar(Locators.displayed_month_year, data.check_out["month_year_co"], Locators.next_button, Locators.correct_day,
-                                  data.check_out["year_co"], data.check_out["month_number_co"], data.check_out["day_co"])
+        self.request.set_calendar(Locators.displayed_month_year, data.check_in["month_year_ci"], Locators.next_button,
+                                  Locators.checkin_day)
+        self.request.set_calendar(Locators.displayed_month_year, data.check_out["month_year_co"], Locators.next_button,
+                                  Locators.checkout_day)
+        time.sleep(3)
 
     def teardown_class(self):
         self.request.driver.quit()
+        
