@@ -24,10 +24,41 @@ class TestTrivagoWeb:
         time.sleep(3)
 
     def test_add_adults(self):
-        self.request.add_adults(Locators.adults_plus_counter, )
+        self.request.add_adults(Locators.adults_plus_counter, data.adults_to_add)
+
+    def test_remove_adults(self):
+        self.request.remove_adults(Locators.adults_minus_counter, data.adults_to_remove)
 
     def test_add_kids(self):
-        self.request.add_kids(self, Locators.kid1_age_dropdown, kid1_age)
+        self.request.add_kids(Locators.kid1_age_dropdown, data.kids_to_add)
+
+    def test_remove_kids(self):
+        self.request.remove_kids(Locators.kids_minus_counter, data.kids_to_remove)
+
+    def test_add_rooms(self):
+        self.request.add_rooms(Locators.rooms_plus_counter, data.rooms_to_add)
+
+    def test_remove_rooms(self):
+        self.request.remove_rooms(Locators.rooms_minus_counter, data.rooms_to_remove)
+
+    def test_select_kids_age(self):
+        self.request.select_kid_age(Locators.kid1_age_dropdown, data.kids_ages[1])
+        self.request.select_kid_age(Locators.kid2_age_dropdown, data.kids_ages[2])
+
+    def test_pets_allowed_checkbox(self):
+        self.request.pets_allowed_checkbox(Locators.pets_allowed_checkbox)
+
+    def test_restart_guests_view(self):
+        self.request.restart_guests_view(Locators.restart_guests_view_button)
+
+    def test_accept_guests_and_rooms_button(self):
+        self.request.accept_guests_and_rooms_button(Locators.accept_guests_and_rooms_button)
+
+    def test_click_on_search_button(self):
+        self.request.click_on_search_button(Locators.click_on_search_button)
+
+    def test_scroll_to_find_hostel_card(self):
+        self.request.scroll_to_find_hostel_card(Locators.hostel_card)
 
     def teardown_class(self):
         self.request.driver.quit()

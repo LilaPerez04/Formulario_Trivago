@@ -11,7 +11,7 @@ check_in = {
     "day_ci": '10',
     "month_ci": 'Mayo',
     "month_number_ci": '05',
-    "year_ci": '2024',
+    "year_ci": '2024'
 }
 # Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
 check_in["month_year_ci"] = check_in["month_ci"] + " " + check_in["year_ci"]
@@ -25,6 +25,22 @@ check_out = {
 }
 # Agregando un nuevo elemento al diccionario check_out (concatenando mes y año)
 check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
+
+adults_to_add = 5
+adults_to_remove = 2
+
+kids_to_add = 3
+kids_to_remove = 1
+
+kids_ages = {
+    1: "6",
+    2: "0",
+    3: "4",
+    4: "15"
+}
+
+rooms_to_add = 2
+rooms_to_remove = 1
 
 
 #2345
