@@ -15,8 +15,10 @@ displayed_month_year = (By.XPATH,
                         '//h3[contains(@class, "Heading_heading__xct3h")][1]')
 next_button = (By.XPATH,
                '//button[@data-testid="calendar-button-next"]')
-checkin_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_in["year_ci"]}-{data.check_in["month_number_ci"]}-{data.check_in["day_ci"]}"]')
-checkout_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_out["year_co"]}-{data.check_out["month_number_co"]}-{data.check_out["day_co"]}"]')
+checkin_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_in["year_ci"]}-'
+                         f'{data.check_in["month_number_ci"]}-{data.check_in["day_ci"]}"]')
+checkout_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_out["year_co"]}-'
+                          f'{data.check_out["month_number_co"]}-{data.check_out["day_co"]}"]')
 
 # Menú habitaciones y huéspedes
 guests_and_rooms_button = (By.XPATH, "//span[@data-testid='search-form-guest-selector-value']")
@@ -31,8 +33,10 @@ kid2_age_dropdown = (By.XPATH, "(//select[contains(@class, 'appearance-none h-10
 pets_allowed_checkbox = (By.XPATH, "//input[@data-testid='pet-friendly-filter']")
 restart_guests_view_button = (By.CLASS_NAME, 'FlyoutGuestsRooms_resetBtn__1oUka')
 accept_guests_and_rooms_button = (By.XPATH, "//button[text()='Aceptar']")
+
+# Botón de buscar
 click_on_search_button = (By.XPATH, "//span[text()='Buscar']")
+
+# Vista principal de hoteles encontrados
 hostel_card = (By.XPATH, "//div[@id='__next']/div[1]/main[1]/div[3]/section[1]/div[1]/div[1]/ol[1]/li[6]/div[1]"
                          "/article[1]/div[2]/div[1]")
-
-#1345

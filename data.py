@@ -26,21 +26,22 @@ check_out = {
 # Agregando un nuevo elemento al diccionario check_out (concatenando mes y año)
 check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
 
+# Agregando/quitando huéspedes adultos
 adults_to_add = 5
 adults_to_remove = 2
 
+# Agregando/quitando huéspedes niños
 kids_to_add = 3
 kids_to_remove = 1
 
+# Configurar edades de los niños
 kids_ages = {
     1: "6",
-    2: "0",
-    3: "4",
-    4: "15"
+    2: "0"
+    #    3: "4",
+    #    4: "15"
 }
 
+# Agregando/quitando cuartos
 rooms_to_add = 2
 rooms_to_remove = 1
-
-
-#2345

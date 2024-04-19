@@ -21,7 +21,6 @@ class TestTrivagoWeb:
                                   Locators.checkin_day)
         self.request.set_calendar(Locators.displayed_month_year, data.check_out["month_year_co"], Locators.next_button,
                                   Locators.checkout_day)
-        time.sleep(3)
 
     def test_add_adults(self):
         self.request.add_adults(Locators.adults_plus_counter, data.adults_to_add)
@@ -30,7 +29,7 @@ class TestTrivagoWeb:
         self.request.remove_adults(Locators.adults_minus_counter, data.adults_to_remove)
 
     def test_add_kids(self):
-        self.request.add_kids(Locators.kid1_age_dropdown, data.kids_to_add)
+        self.request.add_kids(Locators.kids_plus_counter, data.kids_to_add)
 
     def test_remove_kids(self):
         self.request.remove_kids(Locators.kids_minus_counter, data.kids_to_remove)
