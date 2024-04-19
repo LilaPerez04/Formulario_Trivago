@@ -26,6 +26,9 @@ class TestTrivagoWeb:
     def test_add_adults(self):
         self.request.add_adults(Locators.adults_plus_counter, )
 
+    def test_add_kids(self):
+        self.request.add_kids(self, Locators.kid1_age_dropdown, kid1_age)
+
     def teardown_class(self):
         self.request.driver.quit()
         

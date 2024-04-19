@@ -93,18 +93,9 @@ class Request:
             self.driver.find_element(*Locators.rooms_minus_counter).click()
             time.sleep(1)
 
-
-
-    def select_kid1_age(self, age_by_index):
-
-        # Crea un objetos Select
-        kid1_age = Select(Locators.kid1_age_dropdown)
-        kid1_age.select_by_index(age_by_index)  # Selecciona la primera opcion
-        time.sleep(2)
-
-    def select_kid2_age(age):
-        kid2_age_dropdown = driver.find_element(By.XPATH, "(//select[contains(@class, 'appearance-none h-10')])[2]")
-        kid2_age = Select(kid2_age_dropdown)
+    def select_kid_age(self, locator, age):
+        kid2_age_dropdown = self.driver.find_element(locator)
+        kid2_age = Select(kid_age_dropdown)
         kid2_age.select_by_visible_text(age)  # Selecciona la opcion que contenga el texto 5
 
     def pets_allowed_checkbox():
