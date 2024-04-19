@@ -2,8 +2,13 @@ import time
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
+
+from selenium.webdriver.support.ui import Select
+
+import Locators
 import data
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException, NoSuchElementException
+
 
 class Request:
     driver = None
@@ -11,7 +16,7 @@ class Request:
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.get(data.url)
-        self.driver.maximize_window()
+        # self.driver.maximize_window()
 
     def find_hotel(self, locator, value):
         destiny_search = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
@@ -25,33 +30,112 @@ class Request:
         time.sleep(3)
 
     # Navegar al mes y año correctos y configurar fecha de check in y check out
-    def set_calendar(self, locator, month_year, locator_2, locator_3, year, month_number, day):
-        print("Set Calendar")
-        print(month_year)
-        print(year)
-        print(month_number)
-        print(day)
+
+    def set_calendar(self, locator, month_year, locator_next_month, day_button_locator):
         try:
             while True:
-                displayed = WebDriverWait(self.driver, 10).until(
-                        ec.presence_of_element_located(locator)).text
-                print(displayed)
-                if month_year in displayed:
-                    break
-                else:
-                    button_next = WebDriverWait(self.driver, 10).until(
-                        ec.element_to_be_clickable(locator_2))
-                    button_next.click()
-        except NoSuchElementException:
-            print(f"Error: No se encontró el botón para el día {year}/{month_number}/{day}.")
-        except TimeoutException:
-            print("Error: Tiempo de espera agotado al esperar que el botón del día sea clickable.")
+                # Esperar a que se muestre el mes y año correctos en el calendario
+                displayed_month_year = WebDriverWait(self.driver, 10).until(
+                    ec.presence_of_element_located(locator)).text
 
-        # Seleccionar el día correcto de check in y check out
-        select_day_button = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(self.get_correct_day(locator_3, year, month_number, day)))
-        select_day_button.click()
+                if month_year in displayed_month_year:
+                    break  # Salir del bucle si se muestra el mes y año correctos
+                else:
+                    # Si el mes y año esperados no están visibles, hacer clic en el botón siguiente
+                    button_next = WebDriverWait(self.driver, 10).until(
+                        ec.element_to_be_clickable(locator_next_month))
+                    button_next.click()
+
+            # Una vez que se muestra el mes y año correctos, seleccionar el día específico
+            select_day_button = WebDriverWait(self.driver, 10).until(
+                ec.element_to_be_clickable(day_button_locator))
+            select_day_button.click()
+            print("Día seleccionado correctamente.")
+        except Exception as e:
+            print(f"Error en la función set_calendar: {e}")
+    time.sleep(3)
+
+    def select_guests_and_rooms(self, locator):
+        # Click sobre el boton de habitaciones y huespedes
+        self.driver.find_element(locator).click()
+
+    def add_adults(self, locator, adults_to_add):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for i in range(adults_to_add):
+            self.driver.find_element(*locator).click()
+            time.sleep(1)
+
+    def remove_adults(self, locator, adults_to_remove):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for u in range(adults_to_remove):
+            self.driver.find_element(*locator).click()
+            time.sleep(1)
+
+    def add_kids(self, locator, kids_to_add):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for i in range(kids_to_add):
+            self.driver.find_element(*locator).click()
+            time.sleep(1)
+
+    def remove_kids(self, locator, kids_to_remove):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for u in range(kids_to_remove):
+            self.driver.find_element(*locator).click()
+            time.sleep(1)
+
+    def add_rooms(self, locator, rooms_to_add):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for i in range(rooms_to_add):
+            self.driver.find_element(*locator).click()
+            time.sleep(1)
+
+    def remove_rooms(self, locator, rooms_to_remove):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for u in range(rooms_to_remove):
+            self.driver.find_element(*locator).click()
+            time.sleep(1)
+
+    def select_kid_age(self, locator, age):
+        kid_age_element = WebDriverWait(self.driver, 10).until(
+            ec.presence_of_element_located(locator))
+        kid_age = Select(kid_age_element)
+        kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga el texto 6
         time.sleep(3)
 
-    def get_correct_day(self, locator, year, month_number, day):
-        value = locator[1].format(year=year, month_number=month_number, day=day)
-        return (locator[0], value)
+    def pets_allowed_checkbox(self, locator):
+        self.driver.find_element(locator[0], locator[1]).click()
+        time.sleep(2)
+
+    def restart_guests_view(self, locator):
+        # self.driver.find_element(locator).click()
+        restart_button = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
+        restart_button.click()
+        time.sleep(3)
+
+    def accept_guests_and_rooms_button(self, locator):
+        # self.driver.find_element(locator).click()
+        accept_button = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
+        accept_button.click()
+        time.sleep(3)
+
+    def click_on_search_button(self, locator):
+        # self.driver.find_element(locator).click()
+        search_button = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
+        search_button.click()
+        time.sleep(3)
+
+    def scroll_to_find_hostel_card(self, locator):
+        try:
+            # locator[0], locator[1] = locator  # Desempaquetar el localizador
+            element = WebDriverWait(self.driver, 10).until(
+                ec.visibility_of_element_located((locator[0], locator[1])))
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+            time.sleep(2)
+        finally:
+            self.driver.quit()
