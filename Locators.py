@@ -34,3 +34,5 @@ accept_guests_and_rooms_button = (By.XPATH, "//button[text()='Aceptar']")
 click_on_search_button = (By.XPATH, "//span[text()='Buscar']")
 hostel_card = (By.XPATH, "//div[@id='__next']/div[1]/main[1]/div[3]/section[1]/div[1]/div[1]/ol[1]/li[6]/div[1]"
                          "/article[1]/div[2]/div[1]")
+
+#1

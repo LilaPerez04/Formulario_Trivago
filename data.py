@@ -25,3 +25,6 @@ check_out = {
 }
 # Agregando un nuevo elemento al diccionario check_out (concatenando mes y año)
 check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
+
+
+#2
