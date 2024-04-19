@@ -2,8 +2,13 @@ import time
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
+
+from selenium.webdriver.support.ui import Select
+
+import Locators
 import data
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException, NoSuchElementException
+
 
 class Request:
     driver = None
@@ -48,5 +53,71 @@ class Request:
             print("Día seleccionado correctamente.")
         except Exception as e:
             print(f"Error en la función set_calendar: {e}")
+
+    def select_guests_and_rooms(self):
+        # Click sobre el boton de habitaciones y huespedes
+        self.driver.find_element(Locators.guests_and_rooms_button).click()
+
+    def add_adults(self, locator, adults_to_add):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(locator))
+        for i in range(adults_to_add):
+            self.driver.find_element(*Locators.adults_plus_counter).click()
+            time.sleep(1)
+
+    def add_kids(self, kids_to_add):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(Locators.kids_plus_counter))
+        for i in range(kids_to_add):
+            self.driver.find_element(*Locators.kids_plus_counter).click()
+            time.sleep(1)
+
+    def remove_kids(self, kids_to_remove):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(Locators.kids_minus_counter))
+        for u in range(kids_to_remove):
+            self.driver.find_element(*Locators.kids_minus_counter).click()
+            time.sleep(1)
+
+    def add_rooms(self, rooms_to_add):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(Locators.rooms_plus_counter))
+        for i in range(rooms_to_add):
+            self.driver.find_element(*Locators.rooms_plus_counter).click()
+            time.sleep(1)
+
+    def remove_rooms(self, rooms_to_remove):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(Locators.rooms_minus_counter))
+        for u in range(rooms_to_remove):
+            self.driver.find_element(*Locators.rooms_minus_counter).click()
+            time.sleep(1)
+
+
+
+    def select_kid1_age(self, age_by_index):
+
+        # Crea un objetos Select
+        kid1_age = Select(Locators.kid1_age_dropdown)
+        kid1_age.select_by_index(age_by_index)  # Selecciona la primera opcion
+        time.sleep(2)
+
+    def select_kid2_age(age):
+        kid2_age_dropdown = driver.find_element(By.XPATH, "(//select[contains(@class, 'appearance-none h-10')])[2]")
+        kid2_age = Select(kid2_age_dropdown)
+        kid2_age.select_by_visible_text(age)  # Selecciona la opcion que contenga el texto 5
+
+    def pets_allowed_checkbox():
+        driver.find_element(By.XPATH, "//input[@data-testid='pet-friendly-filter']").click()
+        time.sleep(2)
+
+    def restart_guests_view():
+        driver.find_element(By.CLASS_NAME, 'FlyoutGuestsRooms_resetBtn__1oUka').click()
+
+    def accept_guests_and_rooms_button():
+        driver.find_element(By.XPATH, "//button[text()='Aceptar']").click()
+
+    def click_on_search_button():
+        driver.find_element(By.XPATH, "//span[text()='Buscar']").click()
 
 #3345

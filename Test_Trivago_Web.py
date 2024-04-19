@@ -23,6 +23,9 @@ class TestTrivagoWeb:
                                   Locators.checkout_day)
         time.sleep(3)
 
+    def test_add_adults(self):
+        self.request.add_adults(Locators.adults_plus_counter, )
+
     def teardown_class(self):
         self.request.driver.quit()
         
