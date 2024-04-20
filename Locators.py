@@ -32,7 +32,7 @@ kids_plus_counter = (By.XPATH, "//button[@data-testid='children-amount-plus-butt
 kids_minus_counter = (By.XPATH, "//button[@data-testid='children-amount-minus-button']//span[1]")
 
  # Dropdowns para escoger las edades de los niños
-kids_age_dropdown = (By.XPATH, "//select[contains(@class,'appearance-none h-10')]")
+kids_age_dropdown = (By.ID, "childrens-age")
 
 # Contadores para agregar y quitar habitaciones
 rooms_plus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-plus-button']//span[1]")

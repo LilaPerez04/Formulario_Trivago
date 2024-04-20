@@ -87,9 +87,9 @@ class Request:
             time.sleep(1)
 
     def select_kid_age(self, locator, total_kids, kids_ages):
-        for kid_number in range(1, total_kids, +1):
+        for kid_number in range(4, total_kids+3, +1):
             print(f"El total de niños es: {total_kids}")
-            kid_locator = (locator[0], f"{locator[1]}[{kid_number}]")
+            kid_locator = (locator[0], f"{locator[1]}{kid_number}")
             print(f"Localizador del niño: {kid_locator}")
             age = kids_ages[kid_number]
 
@@ -100,7 +100,7 @@ class Request:
             print(f"Niño {kid_number} tiene {age} años.")
 
             try:
-                kid_age_element = WebDriverWait(self.driver, 3).until(
+                kid_age_element = WebDriverWait(self.driver, 10).until(
                     ec.presence_of_element_located(kid_locator))
                 kid_age = Select(kid_age_element)
                 kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga la edad indicada

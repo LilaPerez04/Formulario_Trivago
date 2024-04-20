@@ -38,10 +38,10 @@ total_kids = kids_to_add - kids_to_remove
 
 # Configurar edades de los niños
 kids_ages = {
-    1: "4",
-    2: "2",
-    3: "4",
-    4: "15"
+    4: "4",
+    5: "2",
+    6: "4",
+    7: "15"
 }
 
 # Agregando/quitando cuartos
