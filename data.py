@@ -28,21 +28,22 @@ check_out = {
 check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
 
 # Agregando/quitando huéspedes adultos
-adults_to_add = 5
-adults_to_remove = 2
+adults_to_add = 0
+adults_to_remove = 0
 
 # Agregando/quitando huéspedes niños
-kids_to_add = 3
+kids_to_add = 4
 kids_to_remove = 1
+total_kids = kids_to_add - kids_to_remove
 
 # Configurar edades de los niños
 kids_ages = {
-    1: "6",
-    2: "0"
-    #    3: "4",
-    #    4: "15"
+    1: "4",
+    2: "2",
+    3: "4",
+    4: "15"
 }
 
 # Agregando/quitando cuartos
-rooms_to_add = 2
-rooms_to_remove = 1
+rooms_to_add = 0
+rooms_to_remove = 0

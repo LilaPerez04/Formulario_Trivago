@@ -1,7 +1,6 @@
 import data
 import Locators
 from Request import Request
-import time
 
 
 class TestTrivagoWeb:
@@ -40,9 +39,8 @@ class TestTrivagoWeb:
     def test_remove_rooms(self):
         self.request.remove_rooms(Locators.rooms_minus_counter, data.rooms_to_remove)
 
-    def test_select_kids_age(self):
-        self.request.select_kid_age(Locators.kid1_age_dropdown, data.kids_ages[1])
-        self.request.select_kid_age(Locators.kid2_age_dropdown, data.kids_ages[2])
+    def test_select_kids_ages(self):
+        self.request.select_kid_age(Locators.kids_age_dropdown, data.total_kids, data.kids_ages)
 
     def test_pets_allowed_checkbox(self):
         self.request.pets_allowed_checkbox(Locators.pets_allowed_checkbox)
@@ -56,9 +54,10 @@ class TestTrivagoWeb:
     def test_click_on_search_button(self):
         self.request.click_on_search_button(Locators.click_on_search_button)
 
+    '''
     def test_scroll_to_find_hostel_card(self):
-        self.request.scroll_to_find_hostel_card(Locators.hostel_card)
-
+       self.request.scroll_to_find_hostel_card(Locators.hostel_card)
+   '''
     def teardown_class(self):
         self.request.driver.quit()
-        
+

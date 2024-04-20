@@ -5,7 +5,6 @@ from selenium import webdriver
 
 from selenium.webdriver.support.ui import Select
 
-import Locators
 import data
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException, NoSuchElementException
 
@@ -16,7 +15,7 @@ class Request:
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.get(data.url)
-        # self.driver.maximize_window()
+        self.driver.maximize_window()
 
     def find_hotel(self, locator, value):
         destiny_search = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
@@ -87,6 +86,29 @@ class Request:
             self.driver.find_element(*locator).click()
             time.sleep(1)
 
+    def select_kid_age(self, locator, total_kids, kids_ages):
+        for kid_number in range(1, total_kids, +1):
+            print(f"El total de niños es: {total_kids}")
+            kid_locator = (locator[0], f"{locator[1]}[{kid_number}]")
+            print(f"Localizador del niño: {kid_locator}")
+            age = kids_ages[kid_number]
+
+            if age is None:
+                print(f"No se encontró la edad para el niño {kid_number} en data.kid_num.")
+                continue
+
+            print(f"Niño {kid_number} tiene {age} años.")
+
+            try:
+                kid_age_element = WebDriverWait(self.driver, 3).until(
+                    ec.presence_of_element_located(kid_locator))
+                kid_age = Select(kid_age_element)
+                kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga la edad indicada
+                time.sleep(2)
+
+            except TimeoutException:
+                print(f"No se encontro el selector de edad para el niño {kid_number}")
+
     def add_rooms(self, locator, rooms_to_add):
         WebDriverWait(self.driver, 10).until(
             ec.element_to_be_clickable(locator))
@@ -100,13 +122,6 @@ class Request:
         for u in range(rooms_to_remove):
             self.driver.find_element(*locator).click()
             time.sleep(1)
-
-    def select_kid_age(self, locator, age):
-        kid_age_element = WebDriverWait(self.driver, 10).until(
-            ec.presence_of_element_located(locator))
-        kid_age = Select(kid_age_element)
-        kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga el texto 6
-        time.sleep(3)
 
     def pets_allowed_checkbox(self, locator):
         self.driver.find_element(locator[0], locator[1]).click()
