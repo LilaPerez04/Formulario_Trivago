@@ -26,17 +26,20 @@ guests_and_rooms_button = (By.XPATH, "//span[@data-testid='search-form-guest-sel
 # Contadores para agregar y quitar adultos
 adults_plus_counter = (By.XPATH, "//button[@data-testid='adults-amount-plus-button']//span[1]")
 adults_minus_counter = (By.XPATH, "//button[@data-testid='adults-amount-minus-button']//span[1]")
+adults_text_box = (By.XPATH, "//input[@data-testid='adults-amount']")
 
 # Contadores para agregar y quitar niños
 kids_plus_counter = (By.XPATH, "//button[@data-testid='children-amount-plus-button']//span[1]")
 kids_minus_counter = (By.XPATH, "//button[@data-testid='children-amount-minus-button']//span[1]")
+kids_text_box = (By.XPATH, "//input[@data-testid='children-amount']")
 
  # Dropdowns para escoger las edades de los niños
-kids_age_dropdown = (By.XPATH, "//select[contains(@class,'appearance-none h-10')]")
+kids_age_dropdown = (By.XPATH, "//select[contains(@class, 'appearance-none h-10')]")
 
 # Contadores para agregar y quitar habitaciones
 rooms_plus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-plus-button']//span[1]")
 rooms_minus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-minus-button']//span[1]")
+rooms_text_box = (By.XPATH, "//input[@data-testid='rooms-amount']")
 
 # Otros bonones dentro de la vista 'Huespedes y Habitaciones'
 pets_allowed_checkbox = (By.XPATH, "//input[@data-testid='pet-friendly-filter']")

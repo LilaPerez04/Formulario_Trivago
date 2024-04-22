@@ -23,10 +23,16 @@ class Request:
         destiny_search.send_keys(value)
         time.sleep(3)
 
+    def get_find_hotel(self, locator):
+        return self.driver.find_element(locator).get_property('value')
+
     def calendar_select(self, locator):
         calendar_el = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
         calendar_el.click()
         time.sleep(3)
+
+    def is_calendar_displayed(self, locator):
+        return self.driver.find_element(*locator).get_property('value')
 
     # Navegar al mes y año correctos y configurar fecha de check in y check out
 
@@ -65,6 +71,9 @@ class Request:
             self.driver.find_element(*locator).click()
             time.sleep(1)
 
+    def current_adults_amount(self, locator):
+        return self.driver.find_element(*locator).get_property("value")
+
     def remove_adults(self, locator, adults_to_remove):
         WebDriverWait(self.driver, 10).until(
             ec.element_to_be_clickable(locator))
@@ -86,6 +95,9 @@ class Request:
             self.driver.find_element(*locator).click()
             time.sleep(1)
 
+    def current_kids_amount(self, locator):
+        return self.driver.find_element(*locator).get_property("value")
+
     def select_kid_age(self, locator, total_kids, kids_ages):
         for kid_number in range(1, total_kids, +1):
             print(f"El total de niños es: {total_kids}")
@@ -102,6 +114,8 @@ class Request:
             try:
                 kid_age_element = WebDriverWait(self.driver, 3).until(
                     ec.presence_of_element_located(kid_locator))
+                self.scroll_to_find_hostel_card(kid_locator)
+                print(kid_age_element.text)
                 kid_age = Select(kid_age_element)
                 kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga la edad indicada
                 time.sleep(2)
@@ -122,6 +136,9 @@ class Request:
         for u in range(rooms_to_remove):
             self.driver.find_element(*locator).click()
             time.sleep(1)
+
+    def current_rooms_amount(self, locator):
+        return self.driver.find_element(*locator).get_property("value")
 
     def pets_allowed_checkbox(self, locator):
         self.driver.find_element(locator[0], locator[1]).click()

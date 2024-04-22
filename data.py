@@ -30,6 +30,7 @@ check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
 # Agregando/quitando huéspedes adultos
 adults_to_add = 0
 adults_to_remove = 0
+total_adults = adults_to_add - adults_to_remove - 2
 
 # Agregando/quitando huéspedes niños
 kids_to_add = 4
@@ -47,3 +48,4 @@ kids_ages = {
 # Agregando/quitando cuartos
 rooms_to_add = 0
 rooms_to_remove = 0
+total_rooms = rooms_to_add - rooms_to_remove
