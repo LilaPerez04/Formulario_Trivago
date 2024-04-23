@@ -1,4 +1,3 @@
-# Prueba
 # Configuración de los Drivers y URL de Trivago
 
 # Página Trivago
@@ -28,22 +27,33 @@ check_out = {
 check_out["month_year_co"] = check_out["month_co"] + " " + check_out["year_co"]
 
 # Agregando/quitando huéspedes adultos
-adults_to_add = 0
-adults_to_remove = 0
+adults_to_add = 5
+adults_to_remove = 2
 
 # Agregando/quitando huéspedes niños
-kids_to_add = 4
+kids_to_add = 3
 kids_to_remove = 1
-total_kids = kids_to_add - kids_to_remove
 
 # Configurar edades de los niños
 kids_ages = {
-    1: "4",
-    2: "2",
-    3: "4",
-    4: "15"
+    1: "6",
+    2: "0"
+    #    3: "4",
+    #    4: "15"
 }
 
 # Agregando/quitando cuartos
-rooms_to_add = 0
-rooms_to_remove = 0
+rooms_to_add = 2
+rooms_to_remove = 1
+
+# PARA PRUEBAS CON ASSERT
+
+# Establecer la fecha de check in
+check_in_1 = {
+    "day_ci_1": '15',
+    "month_ci_1": 'Abril',
+    "month_number_ci_1": '04',
+    "year_ci_1": '2024'
+}
+# Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
+check_in_1["month_year_ci_1"] = check_in_1["month_ci_1"] + " " + check_in_1["year_ci_1"]

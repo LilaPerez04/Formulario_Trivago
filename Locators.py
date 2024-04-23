@@ -22,23 +22,14 @@ checkout_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.chec
 
 # Menú habitaciones y huéspedes
 guests_and_rooms_button = (By.XPATH, "//span[@data-testid='search-form-guest-selector-value']")
-
-# Contadores para agregar y quitar adultos
 adults_plus_counter = (By.XPATH, "//button[@data-testid='adults-amount-plus-button']//span[1]")
 adults_minus_counter = (By.XPATH, "//button[@data-testid='adults-amount-minus-button']//span[1]")
-
-# Contadores para agregar y quitar niños
 kids_plus_counter = (By.XPATH, "//button[@data-testid='children-amount-plus-button']//span[1]")
 kids_minus_counter = (By.XPATH, "//button[@data-testid='children-amount-minus-button']//span[1]")
-
- # Dropdowns para escoger las edades de los niños
-kids_age_dropdown = (By.XPATH, "//select[contains(@class,'appearance-none h-10')]")
-
-# Contadores para agregar y quitar habitaciones
 rooms_plus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-plus-button']//span[1]")
 rooms_minus_counter = (By.XPATH, "//button[@data-testid='rooms-amount-minus-button']//span[1]")
-
-# Otros bonones dentro de la vista 'Huespedes y Habitaciones'
+kid1_age_dropdown = (By.XPATH, "//select[contains(@class,'appearance-none h-10')]")
+kid2_age_dropdown = (By.XPATH, "(//select[contains(@class, 'appearance-none h-10')])[2]")
 pets_allowed_checkbox = (By.XPATH, "//input[@data-testid='pet-friendly-filter']")
 restart_guests_view_button = (By.CLASS_NAME, 'FlyoutGuestsRooms_resetBtn__1oUka')
 accept_guests_and_rooms_button = (By.XPATH, "//button[text()='Aceptar']")

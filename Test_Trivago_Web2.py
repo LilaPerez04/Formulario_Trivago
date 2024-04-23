@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import Select
 import time
 
 # Configuración de los Drivers y URL de Trivago
@@ -126,9 +127,6 @@ def remove_rooms(rooms_to_remove):
     for u in range(rooms_to_remove):
         driver.find_element(*rooms_minus_counter).click()
         time.sleep(1)
-
-
-from selenium.webdriver.support.ui import Select
 
 
 def select_kid1_age(age_by_index):
