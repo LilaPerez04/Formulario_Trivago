@@ -30,9 +30,6 @@ class TestTrivagoWeb:
     # Comprueba que el calendario aparece al dar clic en el campo
 
     def test_display_calendar(self):
-        # date = data.check_in_1["month_year_ci_1"]
-        # self.negative_assert(date)
-        # correct_day = self.request.set_calendar(Locators.displayed_month_year, data.check_in["month_year_ci"], Locators.next_button, Locators.checkin_day)
         assert self.request.driver.find_element(*Locators.checkin_day).is_enabled()
 
     def teardown_class(self):
