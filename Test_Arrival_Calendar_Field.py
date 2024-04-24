@@ -17,17 +17,23 @@ class TestTrivagoWeb:
     def test_calendar(self):
         self.request.calendar_select(Locators.arrival_departure_calendar)
 
-    def test_display_calendar(self):
-        assert self.request.driver.find_element(*Locators.tomorrow).is_enabled()
+    def test_are_from_now_on_days_enabled(self):
+        assert self.request.driver.find_element(*Locators.today).is_enabled()
+        assert self.request.driver.find_element(*Locators.future).is_enabled()
+
+    def test_are_past_days_disabled(self):
+        assert not self.request.driver.find_element(*Locators.past).is_enabled()
+
+    def test_arrival_day_no_selected(self):
+        self.request.click_on_search_button(Locators.click_on_search_button)
+        time.sleep(5)
 
     def test_reselect_arrival_date(self):
-        self.request.set_calendar(Locators.displayed_month_year, Locators.next_button, Locators.tomorrow)
-        time.sleep(2)
+        self.request.set_calendar(Locators.displayed_month_year, Locators.next_button, data.today, Locators.today)
         self.request.calendar_select(Locators.arrival_departure_calendar)
-        time.sleep(2)
-        self.request.set_calendar(Locators.displayed_month_year, Locators.next_button, Locators.today)
-        time.sleep(2)
-        assert self.request.driver.find_element(*Locators.today).is_selected()
+        self.request.set_calendar(Locators.displayed_month_year, Locators.next_button, data.future, Locators.future)
+
+        assert self.request.is_the_desired_date_selected(Locators.future)
 
     def teardown_class(self):
         self.request.driver.quit()

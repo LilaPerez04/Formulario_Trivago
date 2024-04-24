@@ -19,9 +19,9 @@ next_button = (By.XPATH,
 # Localizadores de los dias de prueba
 today = (By.XPATH, f"//time[@datetime='{data.today}']")
 
-yesterday = (By.XPATH, f"//time[@datetime='{data.yesterday}']")
+past = (By.XPATH, f"//time[@datetime='{data.past}']")
 
-tomorrow = (By.XPATH, f"//time[@datetime='{data.tomorrow}']")
+future = (By.XPATH, f"//time[@datetime='{data.future}']")
 
 # Menú habitaciones y huéspedes
 guests_and_rooms_button = (By.XPATH, "//span[@data-testid='search-form-guest-selector-value']")

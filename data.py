@@ -1,5 +1,4 @@
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+import datetime
 # Prueba
 # Configuración de los Drivers y URL de Trivago
 
@@ -10,9 +9,15 @@ url = "https://www.trivago.com.mx/es-MX"
 hotel = "Ocean Coral & Turquesa"
 
 # Establecer la fecha de hoy, ayer y mañana
-today = datetime.today()
-yesterday = datetime.now().date() - relativedelta(days=1)
-tomorrow = datetime.now().date() + relativedelta(days=1)
+today = datetime.date.today()
+past = today - datetime.timedelta(days=5)
+future = today + datetime.timedelta(days=6)
+
+spanish_months = {
+    1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
+    5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
+    9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
+}
 
 
 # Agregando/quitando huéspedes adultos

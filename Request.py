@@ -36,7 +36,7 @@ class Request:
 
     # Navegar al mes y año correctos y configurar fecha de check in y check out
 
-    def set_calendar(self, locator, locator_next_month, day):
+    def set_calendar(self, locator, locator_next_month, day, day_locator):
         try:
             while True:
                 # Esperar a que se muestre el mes y año correctos en el calendario
@@ -44,13 +44,13 @@ class Request:
                     ec.presence_of_element_located(locator)).text
 
                 # Extrae el mes del dia y la primera letra es mayuscula
-                month = day.strtime("%B").capitalize()
+                month = data.spanish_months[data.today.month]
+
                 # Extrae el año del dia
-                year = day.strtime("%Y")
+                year = str(day.year)
 
                 # Formatea el mes y año para buscarlo en el encabezado del calendario
                 month_year = f"{month} {year}"
-                print(month_year)
 
                 if month_year in displayed_month_year:
                     break  # Salir del bucle si se muestra el mes y año correctos
@@ -62,12 +62,17 @@ class Request:
 
             # Una vez que se muestra el mes y año correctos, seleccionar el día específico
             select_day_button = WebDriverWait(self.driver, 10).until(
-                ec.element_to_be_clickable(day))
+                ec.element_to_be_clickable(day_locator))
             select_day_button.click()
-            print("Día seleccionado correctamente.")
+            print(f"Día seleccionado correctamente, {day}.")
         except Exception as e:
             print(f"Error en la función set_calendar: {e}")
-    time.sleep(3)
+
+    def is_the_desired_date_selected(self, day_locator):
+        # Implementación del método aquí
+        desired_date_element = self.driver.find_element(*day_locator)
+        desired_date_classes = desired_date_element.get_attribute('class')
+        return "bg-blue-800" in desired_date_classes
 
     def select_guests_and_rooms(self, locator):
         # Click sobre el boton de habitaciones y huespedes
