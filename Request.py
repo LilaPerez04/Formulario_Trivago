@@ -180,3 +180,4 @@ class Request:
             time.sleep(2)
         finally:
             self.driver.quit()
+#
