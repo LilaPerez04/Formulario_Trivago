@@ -49,8 +49,10 @@ class Request:
                 ec.element_to_be_clickable(day_button_locator))
             select_day_button.click()
             print("Día seleccionado correctamente.")
+            return True  # Devolver True si la selección del día fue exitosa
         except Exception as e:
             print(f"Error en la función set_calendar: {e}")
+            return False  # Devolver False si se produce un error al seleccionar el día
     time.sleep(3)
 
     def select_guests_and_rooms(self, locator):

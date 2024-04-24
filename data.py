@@ -8,9 +8,9 @@ hotel = "Ocean Coral & Turquesa"
 
 # Establecer la fecha de check in
 check_in = {
-    "day_ci": '10',
-    "month_ci": 'Mayo',
-    "month_number_ci": '05',
+    "day_ci": '24',
+    "month_ci": 'Abril',
+    "month_number_ci": '04',
     "year_ci": '2024'
 }
 # Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
@@ -48,12 +48,22 @@ rooms_to_remove = 1
 
 # PARA PRUEBAS CON ASSERT
 
-# Establecer la fecha de check in
+# Establecer la fecha de check in ayer
 check_in_1 = {
-    "day_ci_1": '15',
+    "day_ci_1": '23',
     "month_ci_1": 'Abril',
     "month_number_ci_1": '04',
     "year_ci_1": '2024'
 }
 # Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
 check_in_1["month_year_ci_1"] = check_in_1["month_ci_1"] + " " + check_in_1["year_ci_1"]
+
+# Establecer la fecha de check in mañana
+check_in_2 = {
+    "day_ci_2": '25',
+    "month_ci_2": 'Abril',
+    "month_number_ci_2": '04',
+    "year_ci_2": '2024'
+}
+# Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
+check_in_2["month_year_ci_2"] = check_in_2["month_ci_2"] + " " + check_in_2["year_ci_2"]

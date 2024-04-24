@@ -17,6 +17,10 @@ next_button = (By.XPATH,
                '//button[@data-testid="calendar-button-next"]')
 checkin_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_in["year_ci"]}-'
                          f'{data.check_in["month_number_ci"]}-{data.check_in["day_ci"]}"]')
+checkin_day_1 = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_in_1["year_ci_1"]}-'
+                         f'{data.check_in_1["month_number_ci_1"]}-{data.check_in_1["day_ci_1"]}"]')
+checkin_day_2 = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_in_2["year_ci_2"]}-'
+                         f'{data.check_in_2["month_number_ci_2"]}-{data.check_in_2["day_ci_2"]}"]')
 checkout_day = (By.XPATH, f'//button[@data-testid="valid-calendar-day-{data.check_out["year_co"]}-'
                           f'{data.check_out["month_number_co"]}-{data.check_out["day_co"]}"]')
 
