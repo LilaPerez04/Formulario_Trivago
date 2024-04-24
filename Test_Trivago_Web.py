@@ -18,13 +18,13 @@ class TestTrivagoWeb:
         assert self.request.is_calendar_displayed(Locators.displayed_month_year)
 
     def test_calendar_setup(self):
-        self.request.set_calendar(Locators.displayed_month_year, data.check_in["month_year_ci"], Locators.next_button,
-                                  Locators.checkin_day)
-        self.request.set_calendar(Locators.displayed_month_year, data.check_out["month_year_co"], Locators.next_button,
-                                  Locators.checkout_day)
+        self.request.set_calendar(data.today, Locators.next_button,
+                                  Locators.today)
+        self.request.set_calendar(data.tomorrow, Locators.next_button,
+                                  Locators.tomorrow)
 
-        assert Locators.checkin_day.is_selected()
-        assert Locators.checkout_day.is_selected()
+        assert Locators.today.is_selected()
+        assert Locators.tomorrow.is_selected()
 
     def test_add_adults(self):
         self.request.add_adults(Locators.adults_plus_counter, data.adults_to_add)
@@ -59,8 +59,8 @@ class TestTrivagoWeb:
         assert rooms_amount == data.total_kids, f"La cantidad de cuartos obtenida es {rooms_amount} y la esperada {data.total_rooms}"
 
     def test_select_kids_age(self):
-        self.request.select_kid_age(Locators.kid1_age_dropdown, data.kids_ages[1])
-        self.request.select_kid_age(Locators.kid2_age_dropdown, data.kids_ages[2])
+        self.request.select_kid_age(Locators.kid1_age_dropdown, data.total_kids, data.kids_ages[1])
+        self.request.select_kid_age(Locators.kid2_age_dropdown, data.total_kids, data.kids_ages[2])
 
     def test_pets_allowed_checkbox(self):
         self.request.pets_allowed_checkbox(Locators.pets_allowed_checkbox)
@@ -79,3 +79,5 @@ class TestTrivagoWeb:
 
     def teardown_class(self):
         self.request.driver.quit()
+
+#

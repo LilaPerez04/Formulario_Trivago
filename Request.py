@@ -2,10 +2,11 @@ import time
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
+
 from selenium.webdriver.support.ui import Select
 
-import Locators
 import data
+from selenium.common.exceptions import TimeoutException
 
 
 class Request:
@@ -14,7 +15,7 @@ class Request:
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.get(data.url)
-        # self.driver.maximize_window()
+        self.driver.maximize_window()
 
     def find_hotel(self, locator, value):
         destiny_search = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
@@ -22,19 +23,34 @@ class Request:
         destiny_search.send_keys(value)
         time.sleep(3)
 
+    def get_find_hotel(self, locator):
+        return self.driver.find_element(locator).get_property('value')
+
     def calendar_select(self, locator):
         calendar_el = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
         calendar_el.click()
         time.sleep(3)
 
+    def is_calendar_displayed(self, locator):
+        return self.driver.find_element(*locator).get_property('value')
+
     # Navegar al mes y año correctos y configurar fecha de check in y check out
 
-    def set_calendar(self, locator, month_year, locator_next_month, day_button_locator):
+    def set_calendar(self, locator, locator_next_month, day):
         try:
             while True:
                 # Esperar a que se muestre el mes y año correctos en el calendario
                 displayed_month_year = WebDriverWait(self.driver, 10).until(
                     ec.presence_of_element_located(locator)).text
+
+                # Extrae el mes del dia y la primera letra es mayuscula
+                month = day.strtime("%B").capitalize()
+                # Extrae el año del dia
+                year = day.strtime("%Y")
+
+                # Formatea el mes y año para buscarlo en el encabezado del calendario
+                month_year = f"{month} {year}"
+                print(month_year)
 
                 if month_year in displayed_month_year:
                     break  # Salir del bucle si se muestra el mes y año correctos
@@ -46,7 +62,7 @@ class Request:
 
             # Una vez que se muestra el mes y año correctos, seleccionar el día específico
             select_day_button = WebDriverWait(self.driver, 10).until(
-                ec.element_to_be_clickable(day_button_locator))
+                ec.element_to_be_clickable(day))
             select_day_button.click()
             print("Día seleccionado correctamente.")
         except Exception as e:
@@ -63,6 +79,9 @@ class Request:
         for i in range(adults_to_add):
             self.driver.find_element(*locator).click()
             time.sleep(1)
+
+    def current_adults_amount(self, locator):
+        return self.driver.find_element(*locator).get_property("value")
 
     def remove_adults(self, locator, adults_to_remove):
         WebDriverWait(self.driver, 10).until(
@@ -85,6 +104,34 @@ class Request:
             self.driver.find_element(*locator).click()
             time.sleep(1)
 
+    def current_kids_amount(self, locator):
+        return self.driver.find_element(*locator).get_property("value")
+
+    def select_kid_age(self, locator, total_kids, kids_ages):
+        for kid_number in range(1, total_kids, +1):
+            print(f"El total de niños es: {total_kids}")
+            kid_locator = (locator[0], f"{locator[1]}[{kid_number}]")
+            print(f"Localizador del niño: {kid_locator}")
+            age = kids_ages[kid_number]
+
+            if age is None:
+                print(f"No se encontró la edad para el niño {kid_number} en data.kid_num.")
+                continue
+
+            print(f"Niño {kid_number} tiene {age} años.")
+
+            try:
+                kid_age_element = WebDriverWait(self.driver, 3).until(
+                    ec.presence_of_element_located(kid_locator))
+                self.scroll_to_find_hostel_card(kid_locator)
+                print(kid_age_element.text)
+                kid_age = Select(kid_age_element)
+                kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga la edad indicada
+                time.sleep(2)
+
+            except TimeoutException:
+                print(f"No se encontro el selector de edad para el niño {kid_number}")
+
     def add_rooms(self, locator, rooms_to_add):
         WebDriverWait(self.driver, 10).until(
             ec.element_to_be_clickable(locator))
@@ -99,12 +146,8 @@ class Request:
             self.driver.find_element(*locator).click()
             time.sleep(1)
 
-    def select_kid_age(self, locator, age):
-        kid_age_element = WebDriverWait(self.driver, 10).until(
-            ec.presence_of_element_located(locator))
-        kid_age = Select(kid_age_element)
-        kid_age.select_by_visible_text(age)  # Selecciona la opcion que contenga el texto 6
-        time.sleep(3)
+    def current_rooms_amount(self, locator):
+        return self.driver.find_element(*locator).get_property("value")
 
     def pets_allowed_checkbox(self, locator):
         self.driver.find_element(locator[0], locator[1]).click()
