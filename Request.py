@@ -68,6 +68,12 @@ class Request:
         except Exception as e:
             print(f"Error en la función set_calendar: {e}")
 
+    def is_this_date_enabled(self, day_locator):
+        # Implementación del método aquí
+        desired_date_element = self.driver.find_element(*day_locator)
+        tabindex = desired_date_element.get_attribute('tabindex')
+        return tabindex == "1"
+
     def is_the_desired_date_selected(self, day_locator):
         # Implementación del método aquí
         desired_date_element = self.driver.find_element(*day_locator)

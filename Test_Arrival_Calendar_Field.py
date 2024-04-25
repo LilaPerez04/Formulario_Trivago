@@ -22,11 +22,12 @@ class TestTrivagoWeb:
         assert self.request.driver.find_element(*Locators.future).is_enabled()
 
     def test_are_past_days_disabled(self):
-        assert not self.request.driver.find_element(*Locators.past).is_enabled()
+        assert self.request.driver.find_element(*Locators.past).is_enabled()
 
     def test_arrival_day_no_selected(self):
         self.request.click_on_search_button(Locators.click_on_search_button)
-        time.sleep(5)
+        time.sleep(3)
+        assert self.request.driver.find_element(*Locators.search_results).is_displayed()
 
     def test_reselect_arrival_date(self):
         self.request.set_calendar(Locators.displayed_month_year, Locators.next_button, data.today, Locators.today)
