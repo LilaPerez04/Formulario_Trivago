@@ -1,3 +1,6 @@
+import locale
+from datetime import date, time, datetime, timedelta
+
 # Configuración de los Drivers y URL de Trivago
 
 # Página Trivago
@@ -7,7 +10,10 @@ url = "https://www.trivago.com.mx/es-MX"
 hotel = "Ocean Coral & Turquesa"
 
 # Establecer la fecha de check in
+"""
+
 check_in = {
+
     "day_ci": '24',
     "month_ci": 'Abril',
     "month_number_ci": '04',
@@ -15,6 +21,22 @@ check_in = {
 }
 # Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
 check_in["month_year_ci"] = check_in["month_ci"] + " " + check_in["year_ci"]
+
+"""
+# Establecer la configuración regional en español
+locale.setlocale(locale.LC_TIME, 'es_ES')
+
+# Obtener la fecha actual
+today = datetime.today()
+
+check_in = {
+    "day_ci": today.day,
+    # Aquí utilizamos el método strftime para obtener el nombre del mes en formato de texto
+    "month_ci": today.strftime("%B"),
+    "month_number_ci": today.month,
+    "year_ci": today.year
+}
+print(check_in["day_ci"], check_in["month_ci"], check_in["month_number_ci"], check_in["year_ci"])
 
 # Establecer la fecha de check out
 check_out = {
@@ -49,6 +71,9 @@ rooms_to_remove = 1
 # PARA PRUEBAS CON ASSERT
 
 # Establecer la fecha de check in ayer
+
+"""
+
 check_in_1 = {
     "day_ci_1": '23',
     "month_ci_1": 'Abril',
@@ -58,12 +83,44 @@ check_in_1 = {
 # Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
 check_in_1["month_year_ci_1"] = check_in_1["month_ci_1"] + " " + check_in_1["year_ci_1"]
 
+"""
+
+# Obtener la fecha de ayer
+yesterday = today - timedelta(days=1)
+
+check_in_1 = {
+    "day_ci_1": yesterday.day,
+    # Aquí utilizamos el método strftime para obtener el nombre del mes en formato de texto
+    "month_ci_1": yesterday.strftime("%B"),
+    "month_number_ci_1": yesterday.month,
+    "year_ci_1": yesterday.year
+}
+print(check_in_1["day_ci_1"], check_in_1["month_ci_1"], check_in_1["month_number_ci_1"], check_in_1["year_ci_1"])
+
 # Establecer la fecha de check in mañana
+
+"""
+
 check_in_2 = {
     "day_ci_2": '25',
     "month_ci_2": 'Abril',
     "month_number_ci_2": '04',
     "year_ci_2": '2024'
 }
+
 # Agregando un nuevo elemento al diccionario check_in (concatenando mes y año)
 check_in_2["month_year_ci_2"] = check_in_2["month_ci_2"] + " " + check_in_2["year_ci_2"]
+
+"""
+
+# Obtener la fecha de mañana
+tomorrow = today + timedelta(days=1)
+
+check_in_2 = {
+    "day_ci_2": tomorrow.day,
+    # Aquí utilizamos el método strftime para obtener el nombre del mes en formato de texto
+    "month_ci_2": tomorrow.strftime("%B"),
+    "month_number_ci_2": tomorrow.month,
+    "year_ci_2": tomorrow.year
+}
+print(check_in_2["day_ci_2"], check_in_2["month_ci_2"], check_in_2["month_number_ci_2"], check_in_2["year_ci_2"])
