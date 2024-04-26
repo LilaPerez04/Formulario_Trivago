@@ -16,6 +16,12 @@ class TestTrivagoWeb:
     def test_fill_hotel_field(self):
         self.request.find_hotel(Locators.destiny_city_searcher, data.hotel)
 
+    # Comprueba que se pueda mandar una solicitud con el calendario de llegada vacío
+    #def test_arrival_day_no_selected(self):
+    #    self.request.click_on_search_button(Locators.click_on_search_button)
+    #    time.sleep(3)
+    #    assert self.request.driver.find_element(*Locators.search_results).is_displayed()
+
     # Da clic en el Campo "calendario"
     def test_clic_calendar_field(self):
         self.request.calendar_select(Locators.arrival_departure_calendar)
@@ -27,7 +33,7 @@ class TestTrivagoWeb:
     # Comprueba que el calendario se abre con el mes actual la primera vez
     def test_display_current_month(self):
         current_month_year = WebDriverWait(self.request.driver, 10).until(
-            ec.presence_of_element_located(Locators.displayed_month_year)).text
+            ec.presence_of_element_located(Locators.displayed_month_year)).text.lower()
         assert current_month_year == data.check_in["month_year_ci"]
 
     # Comprueba que solo se puedan elegir fechas apartir del día actual

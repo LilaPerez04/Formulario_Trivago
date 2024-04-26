@@ -1,10 +1,10 @@
 import time
+# from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
-import Locators
 import data
 
 
@@ -20,6 +20,7 @@ class Request:
         destiny_search = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
         destiny_search.click()
         destiny_search.send_keys(value)
+        # destiny_search.send_keys(Keys.TAB)
         time.sleep(3)
 
     def calendar_select(self, locator):
@@ -27,14 +28,15 @@ class Request:
         calendar_el.click()
         time.sleep(3)
 
-    # Navegar al mes y año correctos y configurar fecha de check in y check out
 
+
+    # Navegar al mes y año correctos y configurar fecha de check in y check out
     def set_calendar(self, locator, month_year, locator_next_month, day_button_locator):
         try:
             while True:
                 # Esperar a que se muestre el mes y año correctos en el calendario
                 displayed_month_year = WebDriverWait(self.driver, 10).until(
-                    ec.presence_of_element_located(locator)).text
+                    ec.presence_of_element_located(locator)).text.lower()
 
                 if month_year in displayed_month_year:
                     break  # Salir del bucle si se muestra el mes y año correctos
@@ -48,6 +50,7 @@ class Request:
             select_day_button = WebDriverWait(self.driver, 10).until(
                 ec.element_to_be_clickable(day_button_locator))
             select_day_button.click()
+            print(select_day_button)
             print("Día seleccionado correctamente.")
             return True  # Devolver True si la selección del día fue exitosa
         except Exception as e:
