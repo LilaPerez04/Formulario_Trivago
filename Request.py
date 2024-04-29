@@ -4,6 +4,8 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
 
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
+
 
 import data
 from selenium.common.exceptions import TimeoutException
@@ -21,7 +23,9 @@ class Request:
         destiny_search = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator))
         destiny_search.click()
         destiny_search.send_keys(value)
-        time.sleep(3)
+        time.sleep(1)
+        destiny_search.send_keys(Keys.TAB)
+        time.sleep(2)
 
     def get_find_hotel(self, locator):
         return self.driver.find_element(locator).get_property('value')
@@ -61,18 +65,16 @@ class Request:
                     button_next.click()
 
             # Una vez que se muestra el mes y año correctos, seleccionar el día específico
-            select_day_button = WebDriverWait(self.driver, 10).until(
+            select_day_button = WebDriverWait(self.driver, 3).until(
                 ec.element_to_be_clickable(day_locator))
             select_day_button.click()
             print(f"Día seleccionado correctamente, {day}.")
+
+            return True
+
         except Exception as e:
             print(f"Error en la función set_calendar: {e}")
-
-    def is_this_date_enabled(self, day_locator):
-        # Implementación del método aquí
-        desired_date_element = self.driver.find_element(*day_locator)
-        tabindex = desired_date_element.get_attribute('tabindex')
-        return tabindex == "1"
+            return False
 
     def is_the_desired_date_selected(self, day_locator):
         # Implementación del método aquí

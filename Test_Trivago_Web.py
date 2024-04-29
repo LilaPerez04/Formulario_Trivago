@@ -20,7 +20,7 @@ class TestTrivagoWeb:
     def test_calendar_setup(self):
         self.request.set_calendar(data.today, Locators.next_button,
                                   Locators.today)
-        self.request.set_calendar(data.tomorrow, Locators.next_button,
+        self.request.set_calendar(data.future, Locators.next_button,
                                   Locators.tomorrow)
 
         assert Locators.today.is_selected()

@@ -10,8 +10,8 @@ hotel = "Ocean Coral & Turquesa"
 
 # Establecer la fecha de hoy, ayer y mañana
 today = datetime.date.today()
-past = today - datetime.timedelta(days=5)
-future = today + datetime.timedelta(days=6)
+past = today - datetime.timedelta(days=30)
+future = today + datetime.timedelta(days=1)
 
 spanish_months = {
     1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
