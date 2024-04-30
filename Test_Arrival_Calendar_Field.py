@@ -15,17 +15,18 @@ class TestTrivagoWeb:
     def test_fill_hotel_field(self):
         self.request.find_hotel(Locators.destiny_city_searcher, data.hotel)
 
+    # Comprueba que el campo no es obligatorio
     def test_arrival_day_no_selected(self):
         self.request.click_on_search_button(Locators.click_on_search_button)
         assert WebDriverWait(self.request.driver, 10).until(
             ec.presence_of_element_located(Locators.search_results))
 
+    # Prueba que el calendario aparezca al dar clic en el campo
     def test_clic_calendar_field(self):
         self.request.calendar_select(Locators.arrival_departure_calendar)
         assert self.request.driver.find_element(*Locators.arrival_departure_calendar).is_displayed()
 
-        # Comprueba que el calendario se abre con el mes actual la primera vez
-
+    # Comprueba que el calendario se abre con el mes actual la primera vez
     def test_display_current_month(self):
         self.request.calendar_select(Locators.calendar_checkin_field)
 
@@ -35,28 +36,34 @@ class TestTrivagoWeb:
 
         assert current_month_year == desired_month_year
 
+    # Prueba que solo se pueda elegir fechas a partir del día actual (1)
     def test_is_today_enabled(self):
         assert self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
                                          data.today, Locators.today)
 
+    # Comprueba que la fecha seleccionada en el calendario aparece en el campo
     def test_arrival_field_updates_after_selecting_a_date(self):
         selected_date, field_date = self.request.selected_days(
             Locators.arrival_departure_calendar, data.today)
 
         assert selected_date == field_date
 
+    # Prueba que solo se pueda elegir fechas a partir del día actual (2)
     def test_are_future_days_enabled(self):
         self.request.calendar_select(Locators.arrival_departure_calendar)
 
         assert self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
                                          data.future, Locators.future)
 
+    # Comprueba que no se pueda elegir una fecha pasada
     def test_are_past_days_disabled(self):
         assert not self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
                                              data.past, Locators.past)
 
+    # Comprueba que las fechas no se puedan introducir manualmente
     def test_no_manual_entry_allowed(self):
         self.request.try_to_send_date_manually(Locators.calendar_checkin_field, data.today)
+
 
     def teardown_class(self):
         self.request.driver.quit()
