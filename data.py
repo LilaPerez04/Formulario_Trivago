@@ -1,4 +1,5 @@
 import datetime
+import locale
 # Prueba
 # Configuración de los Drivers y URL de Trivago
 
@@ -8,9 +9,12 @@ url = "https://www.trivago.com.mx/es-MX"
 # Seleccionar destino
 hotel = "Ocean Coral & Turquesa"
 
+# Las fechas ahora estaran en formato español
+locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+
 # Establecer la fecha de hoy, ayer y mañana
 today = datetime.date.today()
-past = today - datetime.timedelta(days=30)
+past = today - datetime.timedelta(days=1)
 future = today + datetime.timedelta(days=1)
 
 spanish_months = {

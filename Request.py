@@ -40,7 +40,7 @@ class Request:
 
     # Navegar al mes y año correctos y configurar fecha de check in y check out
 
-    def set_calendar(self, locator, locator_next_month, day, day_locator):
+    def set_calendar(self, locator, locator_next_button, day, day_locator):
         try:
             while True:
                 # Esperar a que se muestre el mes y año correctos en el calendario
@@ -48,7 +48,7 @@ class Request:
                     ec.presence_of_element_located(locator)).text
 
                 # Extrae el mes del dia y la primera letra es mayuscula
-                month = data.spanish_months[data.today.month]
+                month = day.strftime("%B").capitalize()
 
                 # Extrae el año del dia
                 year = str(day.year)
@@ -61,13 +61,14 @@ class Request:
                 else:
                     # Si el mes y año esperados no están visibles, hacer clic en el botón siguiente
                     button_next = WebDriverWait(self.driver, 10).until(
-                        ec.element_to_be_clickable(locator_next_month))
+                        ec.element_to_be_clickable(locator_next_button))
                     button_next.click()
 
             # Una vez que se muestra el mes y año correctos, seleccionar el día específico
             select_day_button = WebDriverWait(self.driver, 3).until(
                 ec.element_to_be_clickable(day_locator))
             select_day_button.click()
+            time.sleep(2)
             print(f"Día seleccionado correctamente, {day}.")
 
             return True
@@ -76,13 +77,14 @@ class Request:
             print(f"Error en la función set_calendar: {e}")
             return False
 
-    def try_to_send_date_manually(self, locator):
+    def try_to_send_date_manually(self, locator, day):
         try:
-            check_in_element = self.driver.find_element(locator)
-            check_in_element.send_keys("test input")
+            check_in_element = self.driver.find_element(*locator)
+            check_in_element.send_keys(str(day))
 
             # Volver a encontrar el elemento después de enviar las claves
-            check_in_element = self.driver.find_element(locator)
+            check_in_element =  WebDriverWait(self.driver, 3).until(
+                        ec.element_to_be_clickable(*locator))
 
             # Comprueba si el contenido ha cambiado
             updated_text = check_in_element.get_attribute("innerHTML")
@@ -103,8 +105,9 @@ class Request:
             ec.presence_of_element_located(locator)).text
 
         day_of_week = day.strftime("%a")[:-1]
+        month_number = day.strftime("%m")
 
-        field_date = f"{day_of_week}, {day.day}/{day.month}/{str(day.year)[-2:]}"
+        field_date = f"{day_of_week.capitalize()}, {day.day}/{month_number}/{str(day.year)[-2:]}"
 
         return selected_date, field_date
 
