@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 import data
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, ElementNotInteractableException, NoSuchElementException
 
 
 class Request:
@@ -76,11 +76,37 @@ class Request:
             print(f"Error en la función set_calendar: {e}")
             return False
 
-    def is_the_desired_date_selected(self, day_locator):
-        # Implementación del método aquí
-        desired_date_element = self.driver.find_element(*day_locator)
-        desired_date_classes = desired_date_element.get_attribute('class')
-        return "bg-blue-800" in desired_date_classes
+    def try_to_send_date_manually(self, locator):
+        try:
+            check_in_element = self.driver.find_element(locator)
+            check_in_element.send_keys("test input")
+
+            # Volver a encontrar el elemento después de enviar las claves
+            check_in_element = self.driver.find_element(locator)
+
+            # Comprueba si el contenido ha cambiado
+            updated_text = check_in_element.get_attribute("innerHTML")
+            print("Contenido del elemento (puede que no se modifique):", updated_text)
+
+            return True
+
+        except (NoSuchElementException, ElementNotInteractableException):
+            # Si el elemento no permite la entrada de texto, se producirá una excepción.
+            print("El elemento no permite la entrada de texto.")
+
+            return False
+
+    # Comprueba que la fecha se muestre la fecha seleccionada
+
+    def selected_days(self, locator, day):
+        selected_date = WebDriverWait(self.driver, 10).until(
+            ec.presence_of_element_located(locator)).text
+
+        day_of_week = day.strftime("%a")[:-1]
+
+        field_date = f"{day_of_week}, {day.day}/{day.month}/{str(day.year)[-2:]}"
+
+        return selected_date, field_date
 
     def select_guests_and_rooms(self, locator):
         # Click sobre el boton de habitaciones y huespedes

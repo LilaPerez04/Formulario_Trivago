@@ -9,6 +9,7 @@ destiny_city_searcher = (By.ID, 'input-auto-complete')
 # Calendario
 
 arrival_departure_calendar = (By.XPATH, "//span[@data-testid='search-form-calendar-checkin-value']")
+calendar_checkin_field = (By.XPATH, "//span[contains(@data-testid,'search-form-calendar-checkin-value')]")
 
 displayed_month_year = (By.XPATH,
                         '//div[@data-testid="calendar-popover"]//*[contains(@class, "text-center")]'
