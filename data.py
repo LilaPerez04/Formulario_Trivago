@@ -17,13 +17,6 @@ today = datetime.date.today()
 past = today - datetime.timedelta(days=1)
 future = today + datetime.timedelta(days=1)
 
-spanish_months = {
-    1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
-    5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
-    9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
-}
-
-
 # Agregando/quitando huéspedes adultos
 adults_to_add = 0
 adults_to_remove = 0

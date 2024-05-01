@@ -38,6 +38,14 @@ class Request:
     def is_calendar_displayed(self, locator):
         return self.driver.find_element(*locator).get_property('value')
 
+    # Obtener month_year
+    def get_month_year(self, day):
+        month = day.strftime("%B").capitalize()
+        year = str(day.year)
+
+        month_year = f"{month} {year}"
+        return month_year
+
     # Navegar al mes y año correctos y configurar fecha de check in y check out
 
     def set_calendar(self, locator, locator_next_button, day, day_locator):
@@ -47,16 +55,7 @@ class Request:
                 displayed_month_year = WebDriverWait(self.driver, 10).until(
                     ec.presence_of_element_located(locator)).text
 
-                # Extrae el mes del dia y la primera letra es mayuscula
-                month = day.strftime("%B").capitalize()
-
-                # Extrae el año del dia
-                year = str(day.year)
-
-                # Formatea el mes y año para buscarlo en el encabezado del calendario
-                month_year = f"{month} {year}"
-
-                if month_year in displayed_month_year:
+                if self.get_month_year(day) in displayed_month_year:
                     break  # Salir del bucle si se muestra el mes y año correctos
                 else:
                     # Si el mes y año esperados no están visibles, hacer clic en el botón siguiente

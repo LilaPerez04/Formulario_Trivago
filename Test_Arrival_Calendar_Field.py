@@ -32,28 +32,24 @@ class TestTrivagoWeb:
 
         current_month_year = WebDriverWait(self.request.driver, 10).until(
             ec.presence_of_element_located(Locators.displayed_month_year)).text
-        desired_month_year = data.spanish_months[data.today.month] + " " + str(data.today.year)
 
-        assert current_month_year == desired_month_year
+        assert current_month_year == self.request.get_month_year(data.today)
 
-    # Prueba que solo se pueda elegir fechas a partir del día actual (1)
-    def test_is_today_enabled(self):
-        assert self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
-                                         data.today, Locators.today)
+    def test_reselect_arrival_date(self):
+        self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
+                                  data.today, Locators.today)
 
-    # Comprueba que la fecha seleccionada en el calendario aparece en el campo
-    def test_arrival_field_updates_after_selecting_a_date(self):
-        selected_date, field_date = self.request.selected_days(
-            Locators.arrival_departure_calendar, data.today)
-
-        assert selected_date == field_date
-
-    # Prueba que solo se pueda elegir fechas a partir del día actual (2)
-    def test_are_future_days_enabled(self):
         self.request.calendar_select(Locators.arrival_departure_calendar)
 
         assert self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
                                          data.future, Locators.future)
+
+    # Comprueba que la fecha seleccionada en el calendario aparece en el campo
+    def test_arrival_field_updates_after_selecting_a_date(self):
+        selected_date, field_date = self.request.selected_days(
+            Locators.arrival_departure_calendar, data.future)
+
+        assert selected_date == field_date
 
     # Comprueba que no se pueda elegir una fecha pasada
     def test_are_past_days_disabled(self):
@@ -64,6 +60,38 @@ class TestTrivagoWeb:
     def test_no_manual_entry_allowed(self):
         self.request.try_to_send_date_manually(Locators.calendar_checkin_field, data.today)
 
+    def teardown_class(self):
+        self.request.driver.quit()
+
+
+class TestTrivagoWeb2:
+    request = None
+
+    def setup_class(self):
+        self.request = Request()  # Inicializa la clase Request del archivo Request
+
+   # Prueba que solo se pueda elegir fechas a partir del día actual (1)
+    def test_is_today_enabled(self):
+        self.request.calendar_select(Locators.arrival_departure_calendar)
+        assert self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
+                                         data.today, Locators.today)
+
+    def teardown_class(self):
+        self.request.driver.quit()
+
+
+class TestTrivagoWeb3:
+    request = None
+
+    def setup_class(self):
+        self.request = Request()  # Inicializa la clase Request del archivo Request
+
+    # Prueba que solo se pueda elegir fechas a partir del día actual (2)
+    def test_are_future_days_enabled(self):
+        self.request.calendar_select(Locators.arrival_departure_calendar)
+
+        assert self.request.set_calendar(Locators.displayed_month_year, Locators.next_button,
+                                         data.future, Locators.future)
 
     def teardown_class(self):
         self.request.driver.quit()
