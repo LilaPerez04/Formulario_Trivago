@@ -82,7 +82,7 @@ class Request:
             check_in_element.send_keys(str(day))
 
             # Volver a encontrar el elemento después de enviar las claves
-            check_in_element =  WebDriverWait(self.driver, 3).until(
+            check_in_element = WebDriverWait(self.driver, 3).until(
                         ec.element_to_be_clickable(*locator))
 
             # Comprueba si el contenido ha cambiado
@@ -105,8 +105,9 @@ class Request:
 
         day_of_week = day.strftime("%a")[:-1]
         month_number = day.strftime("%m")
+        day_num = str(day.day).zfill(2)
 
-        field_date = f"{day_of_week.capitalize()}, {day.day}/{month_number}/{str(day.year)[-2:]}"
+        field_date = f"{day_of_week.capitalize()}, {day_num}/{month_number}/{str(day.year)[-2:]}"
 
         return selected_date, field_date
 
