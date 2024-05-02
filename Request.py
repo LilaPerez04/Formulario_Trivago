@@ -28,8 +28,6 @@ class Request:
         calendar_el.click()
         time.sleep(3)
 
-
-
     # Navegar al mes y año correctos y configurar fecha de check in y check out
     def set_calendar(self, locator, month_year, locator_next_month, day_button_locator):
         try:

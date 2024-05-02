@@ -16,12 +16,6 @@ class TestTrivagoWeb:
     def test_fill_hotel_field(self):
         self.request.find_hotel(Locators.destiny_city_searcher, data.hotel)
 
-    # Comprueba que se pueda mandar una solicitud con el calendario de llegada vacío
-    #def test_arrival_day_no_selected(self):
-    #    self.request.click_on_search_button(Locators.click_on_search_button)
-    #    time.sleep(3)
-    #    assert self.request.driver.find_element(*Locators.search_results).is_displayed()
-
     # Da clic en el Campo "calendario"
     def test_clic_calendar_field(self):
         self.request.calendar_select(Locators.arrival_departure_calendar)
